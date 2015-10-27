@@ -15,7 +15,7 @@ public class Main {
 		while(command != 0){
 			System.out.println("\n0 - zakoñcz program;");
 			System.out.println("1 - za³aduj macierz z pliku;");
-			System.out.println("2 - znajdŸ œcie¿kê cylku;");
+			System.out.println("2 - znajdŸ œcie¿kê cyklu;");
 			System.out.println("Wybierz polecenie: ");
 			command = scan.nextInt();
 			
@@ -86,17 +86,27 @@ public class Main {
 		
 		//Znajdowanie cyklu d³ugoœci >= min+1
 		public static void getCycle(){
-			minLength = minDeg() + 1;
 			ArrayList<Integer> path = new ArrayList<Integer>();
+			boolean check = false;
+			int i = 0;
 			
-			path.add(0);	//Zaczynam od pierwszego wierzcho³ka
-			if( createCycle(path, 0, 1) ){
-				System.out.println("Œcie¿ka: ");
-				for(int i = 0; i < path.size(); i++){
-					System.out.print((path.get(i)) + " -> ");
+			if(minDeg() >= 2){
+				minLength = minDeg() + 1;
+				while(check == false && i < matrix.size()){
+					path.add(i);
+					
+					if( createCycle(path, i, 1) ){
+						System.out.println("Œcie¿ka: ");
+						for(int j = 0; j < path.size(); j++){
+							System.out.print((path.get(j)) + " -> ");
+						}
+						
+						check = true;
+					}
+					i++;
 				}
 			} else {
-				System.out.println("B³¹d: Nie znaleziono cyklu!");
+				System.out.println("Minimalny stopieñ grafu nie spe³nia za³o¿eñ!");
 			}
 		}
 		
