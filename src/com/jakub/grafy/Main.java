@@ -103,6 +103,7 @@ public class Main {
 
 					check = true;
 				}
+				path.clear();
 				i++;
 			}
 		} else {
